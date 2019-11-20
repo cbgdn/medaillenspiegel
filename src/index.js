@@ -1,4 +1,7 @@
-import greet from './greeter.js';
+import app from './app.js';
 
-console.log("entry point");
-greet();
+// mount app
+app.$mount('.app');
+
+console.log(app);
+console.log("Hello World!");

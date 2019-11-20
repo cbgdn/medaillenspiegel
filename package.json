@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "vue": "^2.6.10",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
