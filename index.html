@@ -6,6 +6,35 @@
 </head>
 <body>
 <section class="app">
+    <section class="main" v-show="entries.length" v-cloak>
+        <ul class="entry-list">
+            <li v-for="entry in entries"
+                class="entry"
+                :key="entry.id"
+                :class="{ editing: entry == editedEntry }">
+                <div class="view">
+                    <label @dblclick="editEntry(entry)">{{ entry.title }}</label>
+                    <label @dblclick="editEntry(entry)">{{ entry.gold }}</label> Gold
+                    <label @dblclick="editEntry(entry)">{{ entry.silver }}</label> Silber
+                    <label @dblclick="editEntry(entry)">{{ entry.bronze }}</label> Bronze
+                    <button class="destroy" @click="removeEntry(entry)">Del</button>
+                </div>
+                <input class="edit" type="text"
+                    v-model="entry.title"
+                    v-entry-focus="entry == editedEntry"
+                    @blur="doneEdit(entry)"
+                    @keyup.enter="doneEdit(entry)"
+                    @keyup.esc="cancelEdit(entry)">
+            </li>
+        </ul>
+    </section>
+    <footer class="footer">
+        <input class="new-entry"
+            autofocus autocomplete="on"
+            placeholder="Gib ein Land ein"
+            v-model="newEntry"
+            @keyup.enter="addEntry">
+    </footer>
 </section>
 <script src="./dist/bundle.js"></script>
 </body>

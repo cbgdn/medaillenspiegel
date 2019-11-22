@@ -1,5 +1,5 @@
 import entryStorage from './storage.js';
-import Vue from 'vue';
+import Vue from 'vue/dist/vue.js';
 
 // app Vue instance
 var app = new Vue({
@@ -32,7 +32,9 @@ var app = new Vue({
             this.entries.push({
                 id: entryStorage.uid++,
                 title: value,
-                completed: false
+                gold: 0,
+                silver: 0,
+                bronze: 0
             });
             this.newEntry = '';
         },
@@ -42,7 +44,10 @@ var app = new Vue({
         },
 
         editEntry: function (entry) {
-            this.beforeEditCache = entry.title;
+            this.beforeEditTitle = entry.title;
+            this.beforeEditGold = entry.gold;
+            this.beforeEditSilver = entry.silver;
+            this.beforeEditBronze = entry.bronze;
             this.editedEntry = entry;
         },
 
@@ -59,7 +64,10 @@ var app = new Vue({
 
         cancelEdit: function (entry) {
             this.editedEntry = null;
-            entry.title = this.beforeEditCache;
+            entry.title = this.beforeEditTitle;
+            entry.gold = this.beforeEditGold;
+            entry.silver = this.beforeEditSilver;
+            entry.bronze = this.beforeEditBronze;
         },
     },
 
