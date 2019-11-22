@@ -1,5 +1,5 @@
 // localStorage persistence
-const STORAGE_KEY = 'medallienspiegel_1';
+const STORAGE_KEY = 'medaillenspiegel_1';
 
 var entryStorage = {
     fetch: function () {
