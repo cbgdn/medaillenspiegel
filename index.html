@@ -13,13 +13,14 @@
     </div>
     <section class="app">
         <section class="main justify-content-center entry-list mb-3" v-show="entries.length">
-                <div v-for="entry in entries"
+            <transition-group tag="div" name="flip-list">
+                <div v-for="(entry, index) in entries"
                     class="row entry"
                     :key="entry.id"
                     :class="{ editing: entry == editedEntry }"
                 >
                     <div class="col rank">
-                        <span class="h4">{{ entry.id+1 }}.</span>
+                        <span class="h4">{{ index+1 }}.</span>
                     </div>
                     <div class="col-10 col-lg-3">
                         <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.title }}</label>
@@ -71,6 +72,7 @@
                         <button class="btn btn-outline-success" @click="doneEdit(entry)">✔️</button><button class="btn btn-outline-warning" @click="cancelEdit(entry)">↩️</button>
                     </div>
                 </div>
+            </transition-group>
         </section>
         <footer class="row justify-content-lg-center footer">
             <input class="form-control new-entry"

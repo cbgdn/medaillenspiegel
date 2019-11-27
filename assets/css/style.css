@@ -22,6 +22,10 @@
     display: none;
 }
 
+.flip-list-move {
+    transition: transform 1s;
+}
+
 .bg-gold {
     background-color: gold;
 }

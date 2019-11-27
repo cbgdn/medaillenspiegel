@@ -31,9 +31,10 @@ var app = new Vue({
             this.entries.push({
                 id: entryStorage.uid++,
                 title: value,
-                gold: 0,
-                silver: 0,
-                bronze: 0
+                gold: '0',
+                silver: '0',
+                bronze: '0',
+                rank: '000000000',
             });
             this.newEntry = '';
         },
@@ -59,6 +60,8 @@ var app = new Vue({
             if (!entry.title) {
                 this.removeEntry(entry);
             }
+            this.updateRank(entry);
+            this.sortEntries();
         },
 
         cancelEdit: function (entry) {
@@ -67,6 +70,26 @@ var app = new Vue({
             entry.gold = this.beforeEditGold;
             entry.silver = this.beforeEditSilver;
             entry.bronze = this.beforeEditBronze;
+        },
+
+        updateRank: function (entry) {
+            entry.rank = entry.gold.padStart(3, '0')+
+                         entry.silver.padStart(3, '0')+
+                         entry.bronze.padStart(3, '0');
+        },
+
+        sortEntries: function () {
+            this.entries.sort(function(el1, el2) {
+                if (el1.rank < el2.rank) {
+                    return 1;
+                }
+
+                if ( el1.rank > el2.rank) {
+                    return -1;
+                }
+
+                return 0;
+            });
         },
     },
 });
