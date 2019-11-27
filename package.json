@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "bootstrap": "^4.4.0",
     "css-loader": "^3.2.0",
     "style-loader": "^1.0.0",
     "vue": "^2.6.10",

@@ -2,45 +2,49 @@
 <html lang="de" dir="ltr">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Medaillenspiegel</title>
+
 </head>
 <body>
-<section class="app">
-    <h1>Medaillenspiegel</h1>
-    <section class="main" v-show="entries.length" v-cloak>
-        <ul class="entry-list">
-            <li v-for="entry in entries"
-                class="entry"
-                :key="entry.id"
-                :class="{ editing: entry == editedEntry }">
-                <div class="rank">{{ entry.id+1 }}.</div>
-                <div class="view">
-                    <label @dblclick="editEntry(entry)">{{ entry.title }}</label>
-                    <label @dblclick="editEntry(entry)">{{ entry.gold }}</label> Gold
-                    <label @dblclick="editEntry(entry)">{{ entry.silver }}</label> Silber
-                    <label @dblclick="editEntry(entry)">{{ entry.bronze }}</label> Bronze
-                    <button class="destroy" @click="removeEntry(entry)">Del</button>
+<div class="container-fluid">
+    <section class="app">
+        <section class="main" v-show="entries.length">
+            <div class="row justify-content-md-center entry-list">
+                <h1>Medaillenspiegel</h1>
+                <div v-for="entry in entries"
+                    class="col-md-10 entry"
+                    :key="entry.id"
+                    :class="{ editing: entry == editedEntry }">
+                    <div class="rank">{{ entry.id+1 }}.</div>
+                    <div class="view">
+                        <label @dblclick="editEntry(entry)">{{ entry.title }}</label>
+                        <label @dblclick="editEntry(entry)">{{ entry.gold }}</label> Gold
+                        <label @dblclick="editEntry(entry)">{{ entry.silver }}</label> Silber
+                        <label @dblclick="editEntry(entry)">{{ entry.bronze }}</label> Bronze
+                        <button class="destroy" @click="removeEntry(entry)">Del</button>
+                    </div>
+                    <div class="edit">
+                        <input type="text"
+                            v-model="entry.title"
+                            v-entry-focus="entry == editedEntry"
+                            @blur="doneEdit(entry)"
+                            @keyup.enter="doneEdit(entry)"
+                            @keyup.esc="cancelEdit(entry)"
+                        >
+                    </div>
                 </div>
-                <div class="edit">
-                    <input type="text"
-                        v-model="entry.title"
-                        v-entry-focus="entry == editedEntry"
-                        @blur="doneEdit(entry)"
-                        @keyup.enter="doneEdit(entry)"
-                        @keyup.esc="cancelEdit(entry)"
-                    >
-                </div>
-            </li>
-        </ul>
+            </div>
+        </section>
+        <footer class="row justify-content-md-center footer">
+            <input class="new-entry"
+                autofocus autocomplete="on"
+                placeholder="Gib ein Land ein"
+                v-model="newEntry"
+                @keyup.enter="addEntry">
+        </footer>
     </section>
-    <footer class="footer">
-        <input class="new-entry"
-            autofocus autocomplete="on"
-            placeholder="Gib ein Land ein"
-            v-model="newEntry"
-            @keyup.enter="addEntry">
-    </footer>
-</section>
+</div>
 <script src="./dist/bundle.js"></script>
 </body>
 </html>
