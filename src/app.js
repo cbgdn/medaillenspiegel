@@ -8,6 +8,13 @@ var app = new Vue({
         entries: entryStorage.fetch(),
         newEntry: '',
         editedEntry: null,
+        mostGold: '0',
+        mostSilver: '0',
+        mostBronze: '0',
+    },
+
+    created: function () {
+        this.updateMostProgress();
     },
 
     // watch entries change for localStorage persistence
@@ -71,6 +78,7 @@ var app = new Vue({
             }
             this.updateRank(entry);
             this.sortEntries();
+            this.updateMostProgress();
         },
 
         cancelEdit: function (entry) {
@@ -99,6 +107,22 @@ var app = new Vue({
 
                 return 0;
             });
+        },
+
+        updateMostProgress: function () {
+            this.mostGold = Math.max.apply(Math, this.entries.map(function(o) { return o.gold; }));
+            this.mostSilver = Math.max.apply(Math, this.entries.map(function(o) { return o.silver; }));
+            this.mostBronze = Math.max.apply(Math, this.entries.map(function(o) { return o.bronze; }));
+        },
+
+        calcProgressGold: function (currentValue) {
+            return new Number(currentValue/this.mostGold*33.333, 3).toFixed(2);
+        },
+        calcProgressSilver: function (currentValue) {
+            return new Number(currentValue/this.mostSilver*33.333, 3).toFixed(2);
+        },
+        calcProgressBronze: function (currentValue) {
+            return new Number(currentValue/this.mostBronze*33.333, 3).toFixed(2);
         },
     },
 });
