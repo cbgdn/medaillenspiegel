@@ -6,12 +6,14 @@
 </head>
 <body>
 <section class="app">
+    <h1>Medaillenspiegel</h1>
     <section class="main" v-show="entries.length" v-cloak>
         <ul class="entry-list">
             <li v-for="entry in entries"
                 class="entry"
                 :key="entry.id"
                 :class="{ editing: entry == editedEntry }">
+                <div class="rank">{{ entry.id+1 }}.</div>
                 <div class="view">
                     <label @dblclick="editEntry(entry)">{{ entry.title }}</label>
                     <label @dblclick="editEntry(entry)">{{ entry.gold }}</label> Gold
@@ -19,12 +21,15 @@
                     <label @dblclick="editEntry(entry)">{{ entry.bronze }}</label> Bronze
                     <button class="destroy" @click="removeEntry(entry)">Del</button>
                 </div>
-                <input class="edit" type="text"
-                    v-model="entry.title"
-                    v-entry-focus="entry == editedEntry"
-                    @blur="doneEdit(entry)"
-                    @keyup.enter="doneEdit(entry)"
-                    @keyup.esc="cancelEdit(entry)">
+                <div class="edit">
+                    <input type="text"
+                        v-model="entry.title"
+                        v-entry-focus="entry == editedEntry"
+                        @blur="doneEdit(entry)"
+                        @keyup.enter="doneEdit(entry)"
+                        @keyup.esc="cancelEdit(entry)"
+                    >
+                </div>
             </li>
         </ul>
     </section>

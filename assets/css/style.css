@@ -6,24 +6,22 @@
 
 .entry-list li {
     position: relative;
-    font-size: 24px;
+    padding: 12px 16px;
+    font-size: 1.5rem;
     border-bottom: 1px solid #ededed;
+}
+
+.entry-list li .rank {
+    float: left;
+    margin-right: 10px;
 }
 
 .entry-list li .edit {
     display: none;
 }
 
-.entry-list li.editing {
-    border-bottom: none;
-    padding: 0;
-}
-
 .entry-list li.editing .edit {
     display: block;
-    /* width: calc(100% - 43px); */
-    padding: 12px 16px;
-    margin: 0 0 0 43px;
 }
 
 .entry-list li.editing .view {
