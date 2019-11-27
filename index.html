@@ -8,36 +8,74 @@
 </head>
 <body>
 <div class="container-fluid">
+    <div class="row justify-content-center">
+        <h1>Medaillenspiegel</h1>
+    </div>
     <section class="app">
-        <section class="main" v-show="entries.length">
-            <div class="row justify-content-md-center entry-list">
-                <h1>Medaillenspiegel</h1>
+        <section class="main justify-content-center entry-list" v-show="entries.length">
                 <div v-for="entry in entries"
-                    class="col-md-10 entry"
+                    class="row entry"
                     :key="entry.id"
-                    :class="{ editing: entry == editedEntry }">
-                    <div class="rank">{{ entry.id+1 }}.</div>
-                    <div class="view">
-                        <label @dblclick="editEntry(entry)">{{ entry.title }}</label>
-                        <label @dblclick="editEntry(entry)">{{ entry.gold }}</label> Gold
-                        <label @dblclick="editEntry(entry)">{{ entry.silver }}</label> Silber
-                        <label @dblclick="editEntry(entry)">{{ entry.bronze }}</label> Bronze
-                        <button class="destroy" @click="removeEntry(entry)">Del</button>
+                    :class="{ editing: entry == editedEntry }"
+                >
+                    <div class="col-2 col-lg-1 rank">
+                        {{ entry.id+1 }}.
                     </div>
-                    <div class="edit">
+                    <div class="col-10 col-lg-3">
+                        <label class="h4 view" @dblclick="editEntry(entry, 'title')">{{ entry.title }}</label>
                         <input type="text"
+                            class="form-control edit"
                             v-model="entry.title"
                             v-entry-focus="entry == editedEntry"
-                            @blur="doneEdit(entry)"
                             @keyup.enter="doneEdit(entry)"
                             @keyup.esc="cancelEdit(entry)"
                         >
                     </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-3 col-lg-1 text-right">
+                        <label class="h4 view" @dblclick="editEntry(entry, 'gold')">{{ entry.gold }}</label>
+                        <input type="number" min="0" max="999" step="1"
+                            class="form-control edit"
+                            v-model="entry.gold"
+                            v-entry-focus="entry == editedEntry"
+                            @keyup.enter="doneEdit(entry)"
+                            @keyup.esc="cancelEdit(entry)"
+                        >
+                    </div>
+                    <div class="col-3 col-lg-1 text-right">
+                        <label class="h4 view" @dblclick="editEntry(entry, 'silver')">{{ entry.silver }}</label>
+                        <input type="number" min="0" max="999" step="1"
+                            class="form-control edit"
+                            v-model="entry.silver"
+                            v-entry-focus="entry == editedEntry"
+                            @keyup.enter="doneEdit(entry)"
+                            @keyup.esc="cancelEdit(entry)"
+                        >
+                    </div>
+                    <div class="col-3 col-lg-1 text-right">
+                        <label class="h4 view" @dblclick="editEntry(entry, 'bronze')">{{ entry.bronze }}</label>
+                        <input type="number" min="0" max="999" step="1"
+                            class="form-control edit"
+                            v-model="entry.bronze"
+                            v-entry-focus="entry == editedEntry"
+                            @keyup.enter="doneEdit(entry)"
+                            @keyup.esc="cancelEdit(entry)"
+                        >
+                    </div>
+                    <div class="col-1">
+                        <button class="" @click="editEntry(entry, 'title')">Edit</button>
+                        <button class="edit destroy" @click="removeEntry(entry)">Del</button>
+                    </div>
                 </div>
-            </div>
         </section>
-        <footer class="row justify-content-md-center footer">
-            <input class="new-entry"
+        <footer class="row justify-content-lg-center footer">
+            <input class="form-control new-entry"
                 autofocus autocomplete="on"
                 placeholder="Gib ein Land ein"
                 v-model="newEntry"
