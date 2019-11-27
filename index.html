@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="col-3 col-lg-1 text-right">
-                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.gold }} 🥇</label>
+                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.gold }}<span class="text-muted">×</span>🥇</label>
                         <input type="number" min="0" max="999" step="1"
                             class="form-control edit"
                             v-model="entry.gold"
@@ -48,7 +48,7 @@
                         >
                     </div>
                     <div class="col-3 col-lg-1 text-right">
-                        <label class="h4 view rounded-pill" @dblclick="editEntry(entry)">{{ entry.silver }} 🥈</label>
+                        <label class="h4 view rounded-pill" @dblclick="editEntry(entry)">{{ entry.silver }}<span class="text-muted">×</span>🥈</label>
                         <input type="number" min="0" max="999" step="1"
                             class="form-control edit"
                             v-model="entry.silver"
@@ -57,7 +57,7 @@
                         >
                     </div>
                     <div class="col-3 col-lg-1 text-right">
-                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.bronze }} 🥉</label>
+                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.bronze }}<span class="text-muted">×</span>🥉</label>
                         <input type="number" min="0" max="999" step="1"
                             class="form-control edit"
                             v-model="entry.bronze"

@@ -60,6 +60,15 @@ var app = new Vue({
             if (!entry.title) {
                 this.removeEntry(entry);
             }
+            if (! /^\d+$/.test(entry.gold)) {
+                entry.gold = '0';
+            }
+            if (! /^\d+$/.test(entry.silver)) {
+                entry.silver = '0';
+            }
+            if (! /^\d+$/.test(entry.bronze)) {
+                entry.bronze = '0';
+            }
             this.updateRank(entry);
             this.sortEntries();
         },
