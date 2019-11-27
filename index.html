@@ -12,7 +12,7 @@
         <h1>Medaillenspiegel</h1>
     </div>
     <section class="app">
-        <section class="main justify-content-center entry-list" v-show="entries.length">
+        <section class="main justify-content-center entry-list mb-3" v-show="entries.length">
                 <div v-for="entry in entries"
                     class="row entry"
                     :key="entry.id"
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="col-3 col-lg-1 text-right">
-                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.gold }}</label>
+                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.gold }} 🥇</label>
                         <input type="number" min="0" max="999" step="1"
                             class="form-control edit"
                             v-model="entry.gold"
@@ -47,7 +47,7 @@
                         >
                     </div>
                     <div class="col-3 col-lg-1 text-right">
-                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.silver }}</label>
+                        <label class="h4 view rounded-pill" @dblclick="editEntry(entry)">{{ entry.silver }} 🥈</label>
                         <input type="number" min="0" max="999" step="1"
                             class="form-control edit"
                             v-model="entry.silver"
@@ -56,7 +56,7 @@
                         >
                     </div>
                     <div class="col-3 col-lg-1 text-right">
-                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.bronze }}</label>
+                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.bronze }} 🥉</label>
                         <input type="number" min="0" max="999" step="1"
                             class="form-control edit"
                             v-model="entry.bronze"
@@ -64,9 +64,11 @@
                             @keyup.esc="cancelEdit(entry)"
                         >
                     </div>
-                    <div class="col-1">
-                        <button class="btn btn-outline-secondary" @click="editEntry(entry, 'gold')">📝</button>
-                        <button class="btn btn-outline-danger edit destroy" @click="removeEntry(entry)">🗑️</button>
+                    <div class="col-3 col-lg-1 view">
+                        <button class="btn btn-outline-secondary" @click="editEntry(entry)">📝</button>
+                    </div>
+                    <div class="col-3 col-lg-1 btn-group edit">
+                        <button class="btn btn-outline-success" @click="doneEdit(entry)">✔️</button><button class="btn btn-outline-warning" @click="cancelEdit(entry)">↩️</button>
                     </div>
                 </div>
         </section>
