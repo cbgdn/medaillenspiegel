@@ -18,66 +18,62 @@
                     :key="entry.id"
                     :class="{ editing: entry == editedEntry }"
                 >
-                    <div class="col-2 col-lg-1 rank">
-                        {{ entry.id+1 }}.
+                    <div class="col rank">
+                        <span class="h4">{{ entry.id+1 }}.</span>
                     </div>
                     <div class="col-10 col-lg-3">
-                        <label class="h4 view" @dblclick="editEntry(entry, 'title')">{{ entry.title }}</label>
+                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.title }}</label>
                         <input type="text"
                             class="form-control edit"
                             v-model="entry.title"
-                            v-entry-focus="entry == editedEntry"
                             @keyup.enter="doneEdit(entry)"
                             @keyup.esc="cancelEdit(entry)"
                         >
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-gold" role="progressbar" style="width: 30%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-silver" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-bronze" role="progressbar" style="width: 40%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <div class="col-3 col-lg-1 text-right">
-                        <label class="h4 view" @dblclick="editEntry(entry, 'gold')">{{ entry.gold }}</label>
+                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.gold }}</label>
                         <input type="number" min="0" max="999" step="1"
                             class="form-control edit"
                             v-model="entry.gold"
-                            v-entry-focus="entry == editedEntry"
                             @keyup.enter="doneEdit(entry)"
                             @keyup.esc="cancelEdit(entry)"
                         >
                     </div>
                     <div class="col-3 col-lg-1 text-right">
-                        <label class="h4 view" @dblclick="editEntry(entry, 'silver')">{{ entry.silver }}</label>
+                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.silver }}</label>
                         <input type="number" min="0" max="999" step="1"
                             class="form-control edit"
                             v-model="entry.silver"
-                            v-entry-focus="entry == editedEntry"
                             @keyup.enter="doneEdit(entry)"
                             @keyup.esc="cancelEdit(entry)"
                         >
                     </div>
                     <div class="col-3 col-lg-1 text-right">
-                        <label class="h4 view" @dblclick="editEntry(entry, 'bronze')">{{ entry.bronze }}</label>
+                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.bronze }}</label>
                         <input type="number" min="0" max="999" step="1"
                             class="form-control edit"
                             v-model="entry.bronze"
-                            v-entry-focus="entry == editedEntry"
                             @keyup.enter="doneEdit(entry)"
                             @keyup.esc="cancelEdit(entry)"
                         >
                     </div>
                     <div class="col-1">
-                        <button class="" @click="editEntry(entry, 'title')">Edit</button>
-                        <button class="edit destroy" @click="removeEntry(entry)">Del</button>
+                        <button class="btn btn-outline-secondary" @click="editEntry(entry, 'gold')">📝</button>
+                        <button class="btn btn-outline-danger edit destroy" @click="removeEntry(entry)">🗑️</button>
                     </div>
                 </div>
         </section>
         <footer class="row justify-content-lg-center footer">
             <input class="form-control new-entry"
                 autofocus autocomplete="on"
-                placeholder="Gib ein Land ein"
+                placeholder="Gib ein neues Land ein und drücke [Enter]"
                 v-model="newEntry"
                 @keyup.enter="addEntry">
         </footer>

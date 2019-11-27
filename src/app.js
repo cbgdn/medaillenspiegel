@@ -8,7 +8,6 @@ var app = new Vue({
         entries: entryStorage.fetch(),
         newEntry: '',
         editedEntry: null,
-        visibility: 'all'
     },
 
     // watch entries change for localStorage persistence
@@ -70,17 +69,6 @@ var app = new Vue({
             entry.bronze = this.beforeEditBronze;
         },
     },
-
-    // a custom directive to wait for the DOM to be updated
-    // before focusing on the input field.
-    // http://vuejs.org/guide/custom-directive.html
-    directives: {
-        'entry-focus': function (el, binding) {
-            if (binding.value) {
-                el.focus();
-            }
-        }
-    }
 });
 
 export default app;
