@@ -24,8 +24,10 @@
                         <span class="h4">{{ index+1 }}.</span>
                     </div>
                     <div class="col-10 col-lg-3">
-                        <span  class="h4 flag" v-bind:class="entry.class"></span>
-                        <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.title }}</label>
+
+                        <label class="h4 view" @dblclick="editEntry(entry)">
+                            <span class="h4 flag" v-bind:class="entry.class"></span>{{ entry.title }}
+                        </label>
                         <input type="text"
                             class="form-control edit"
                             v-model="entry.title"
@@ -34,7 +36,7 @@
                         />
                     </div>
                     <div class="col-12 col-lg-4">
-                        <div class="progress" style="height: 20px;">
+                        <div class="progress">
                             <div class="progress-bar bg-gold" role="progressbar" :style="{'width': `${calcProgressGold(entry.gold)}%`}"></div>
                             <div class="progress-bar bg-silver" role="progressbar" :style="{'width': `${calcProgressSilver(entry.silver)}%`}"></div>
                             <div class="progress-bar bg-bronze" role="progressbar" :style="{'width': `${calcProgressBronze(entry.bronze)}%`}"></div>

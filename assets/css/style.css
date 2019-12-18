@@ -23,7 +23,7 @@
 }
 
 .flip-list-move {
-    transition: transform 3s;
+    transition: transform 2s;
 }
 
 .bg-gold {
@@ -38,9 +38,14 @@
     background-color: #cd7f32;
 }
 
+.progress {
+    height: 1.75rem;
+}
+
 .flag {
     height: 1.5rem;
     vertical-align: middle;
+    margin-right: .5rem;
 }
 
 /*
