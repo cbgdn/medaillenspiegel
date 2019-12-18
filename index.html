@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
+<!-- Flag emojis by Twemoji: https://twemoji.twitter.com/ -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,13 +24,14 @@
                         <span class="h4">{{ index+1 }}.</span>
                     </div>
                     <div class="col-10 col-lg-3">
+                        <span  class="h4 flag" v-bind:class="entry.class"></span>
                         <label class="h4 view" @dblclick="editEntry(entry)">{{ entry.title }}</label>
                         <input type="text"
                             class="form-control edit"
                             v-model="entry.title"
                             @keyup.enter="doneEdit(entry)"
                             @keyup.esc="cancelEdit(entry)"
-                        >
+                        />
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="progress" style="height: 20px;">

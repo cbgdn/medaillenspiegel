@@ -35,14 +35,19 @@ var app = new Vue({
             if (!value) {
                 return;
             }
-            this.entries.push({
+
+            var entry = {
                 id: entryStorage.uid++,
                 title: value,
                 gold: '0',
                 silver: '0',
                 bronze: '0',
                 rank: '000000000',
-            });
+                class: '',
+            }
+
+            this.updateFlagClass(entry);
+            this.entries.push(entry);
             this.newEntry = '';
         },
 
@@ -76,6 +81,8 @@ var app = new Vue({
             if (! /^\d+$/.test(entry.bronze)) {
                 entry.bronze = '0';
             }
+
+            this.updateFlagClass(entry);
             this.updateRank(entry);
             this.sortEntries();
             this.updateMostProgress();
@@ -123,6 +130,24 @@ var app = new Vue({
         },
         calcProgressBronze: function (currentValue) {
             return new Number(currentValue/this.mostBronze*33.333, 3).toFixed(2);
+        },
+
+        updateFlagClass: function (entry) {
+            if (/deutschland/i.test(entry.title)) {
+                entry.class = 'flag_de';
+            } else if (/usa/i.test(entry.title)) {
+                entry.class = 'flag_us';
+            } else if (/russland/i.test(entry.title)) {
+                entry.class = 'flag_ru';
+            } else if (/malawi/i.test(entry.title)) {
+                entry.class = 'flag_mw';
+            } else if (/uruguay/i.test(entry.title)) {
+                entry.class = 'flag_uy';
+            } else if (/china/i.test(entry.title)) {
+                entry.class = 'flag_cn';
+            } else {
+                entry.class = 'no_flag';
+            }
         },
     },
 });
