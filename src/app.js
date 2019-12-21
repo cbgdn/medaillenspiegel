@@ -145,6 +145,24 @@ var app = new Vue({
                 entry.class = 'flag_uy';
             } else if (/china/i.test(entry.title)) {
                 entry.class = 'flag_cn';
+            } else if (/spanien/i.test(entry.title)) {
+                entry.class = 'flag_es';
+            } else if (/frankreich/i.test(entry.title)) {
+                entry.class = 'flag_fr';
+            } else if (/brasilien/i.test(entry.title)) {
+                entry.class = 'flag_br';
+            } else if (/bolivien/i.test(entry.title)) {
+                entry.class = 'flag_bo';
+            } else if (/finnland/i.test(entry.title)) {
+                entry.class = 'flag_fi';
+            } else if (/griechenland/i.test(entry.title)) {
+                entry.class = 'flag_gr';
+            } else if (/israel/i.test(entry.title)) {
+                entry.class = 'flag_il';
+            } else if (/italien/i.test(entry.title)) {
+                entry.class = 'flag_it';
+            } else if (/mexiko/i.test(entry.title)) {
+                entry.class = 'flag_mx';
             } else {
                 entry.class = 'no_flag';
             }
